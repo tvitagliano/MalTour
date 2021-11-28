@@ -32,7 +32,7 @@ public class BaseServlet extends HttpServlet {
 
 	protected void checkAdmin(HttpServletRequest request) throws ServletException {
 		Utente utente = (Utente) request.getSession().getAttribute("utente");
-		if (utente == null || (utente.gestore())==1) {
+		if (utente == null) {
 			throw new MyServletException("Utente non autorizzato");
 		}
 	}

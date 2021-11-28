@@ -13,7 +13,9 @@
             <th>Username</th>
             <th>Nome</th>
             <th>Email</th>
-            <th>Admin</th>
+            <th>Gestore Offerte</th>
+            <th>Gestore Ordini</th>
+            <th>Cliente</th>
         </tr>
         </thead>
 
@@ -23,9 +25,11 @@
                 <td>${utente.username}</td>
                 <td>${utente.nome}</td>
                 <td>${utente.email}</td>
-                <td>${utente.admin ? "Si" : "No"}</td>
+                <td>${utente.gestoreOfferte}</td>
+                <td>${utente.gestoreOrdini}</td>
+                <td>${utente.cliente}</td>
                 <td> 
-                	<form action="AdminUtenti" method="post">
+                	<form action="EliminaAccount" method="post">
 						<input type="hidden" name="id" value="${utente.id}">
 							<c:if test="${utente != null}">
 						<input type="submit" class="btn success" name="rimuovi" value="Rimuovi">

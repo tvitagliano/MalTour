@@ -65,7 +65,9 @@
 				<th>Username</th>
 				<th>Nome</th>
 				<th>Email</th>
-				<th>Admin</th>
+				<th>cliente</th>
+				<th>gestoreOfferte</th>
+				<th>gestoreOrdini</th>
 				<th>Ordini</th>
 				<th>Azioni</th>
 	   		</tr>
@@ -76,7 +78,9 @@
 					<td>${utente.username}</td>
 					<td>${utente.nome}</td>
 					<td>${utente.email}</td>
-					<td>${utente.admin ? "Si" : "No"}</td>
+					<td>${utente.cliente}</td>
+					<td>${utente.gestoreOfferte}</td>
+					<td>${utente.gestoreOrdini}</td>
 					<td><a href="Carrello" btn primary>...</a></td>
 					<td>
 						<form action="AdminUtenti" method="post">

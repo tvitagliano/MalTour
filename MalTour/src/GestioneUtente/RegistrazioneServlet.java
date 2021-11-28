@@ -55,12 +55,14 @@ public class RegistrazioneServlet extends BaseServlet {
 		if (!(email != null && email.matches("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w+)+$"))) {
 			throw new MyServletException("Email non valida.");
 		}
+		int gestore = 1;
 
 		Utente utente = new Utente();
 		utente.setUsername(username);
 		utente.setPassword(password);
 		utente.setNome(nome);
 		utente.setEmail(email);
+		utente.setGestore(gestore);
 		utenteDAO.doSave(utente);
 		request.getSession().setAttribute("utente", utente);
 

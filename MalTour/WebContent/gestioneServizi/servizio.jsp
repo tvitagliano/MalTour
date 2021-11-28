@@ -62,7 +62,7 @@
 
 <div class="content">
 
-	<c:if test="${!(utente.isGestoreOfferte)}">
+	<c:if test="${!(utente.cliente)}">
 		<h1>${servizio.nome}</h1>
 	</c:if>
 	

@@ -114,7 +114,7 @@ public class Utente {
 		return gestore;
 	}
 
-	public void setGestione(int gestore) {
+	public void setGestore(int gestore) {
 		this.gestore = gestore;
 	}
 
