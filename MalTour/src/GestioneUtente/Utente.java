@@ -82,7 +82,34 @@ public class Utente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public boolean isCliente() {
+		if (gestore() == 1) {
+			boolean cliente = true;
+			return cliente;
+		}else {
+			return false;
+		}	
+	}
 
+	public boolean isGestoreOfferte() {
+		if (gestore() == 2) {
+			boolean gestoreOfferte = true;
+			return gestoreOfferte;
+		}else {
+			return false;
+		}	
+	}
+	
+	public boolean isGestoreOrdini() {
+		if (gestore() == 3) {
+			boolean gestoreOrdini = true;
+			return gestoreOrdini;
+		}else {
+			return false;
+		}	
+	}
+	
 	public int gestore() {
 		return gestore;
 	}

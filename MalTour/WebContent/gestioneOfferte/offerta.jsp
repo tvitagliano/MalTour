@@ -182,20 +182,20 @@
 	
 	<div class="cen">
 		<h3>${offerta.destinazione}</h3>
-		${offerta.descrizione}
-		${offerta.data_partenza}
-		${offerta.ora_partenza}
-		${offerta.data_ritorno}
-		${offerta.ora_ritorno}
-		${offerta.partenza_da}
-		${offerta.arrivo_a}
-		${offerta.pernottamento}
-		${offerta.posti_disponibili}
+		<h3>DESCRIZIONE: ${offerta.descrizione}</h3>
+		<h3>DATA PARTENZA: ${offerta.data_partenza}</h3>
+		<h3>ORA PARTENZA:${offerta.ora_partenza}</h3>
+		<h3>DATA RITORNO: ${offerta.data_ritorno}</h3>
+		<h3>ORA RITORNO: ${offerta.ora_ritorno}</h3>
+		<h3>PARTENZA DA: ${offerta.partenza_da}</h3>
+		<h3>ARRIVO A: ${offerta.arrivo_a}</h3>
+		<h3>PERNOTTAMENTO: ${offerta.pernottamento}</h3>
+		<h3>POSTI DISPONIBILI: ${offerta.posti_disponibili}</h3>
 	</div>
 	
 	<div class="des">
 		
-		<c:if test="${utente.gestore == 2}">
+		<c:if test="${utente.gestoreOfferte}">
 				<form action="AdminOfferta" method="post">
 					<input type="hidden" name="id" value="${offerta.id}">
 					<input type="submit" class="btnn success" value="Modifica">
@@ -210,12 +210,12 @@
 			</c:forEach>
 		</p>
 		
-		<c:if test="${utente.gestore == 1}">
+		<c:if test="${utente.cliente}">
 			<h4>PREZZO PER PERSONA: ${offerta.prezzoCent} &euro;</h4>
 				<form action="Carrello" method="post">
 					<label>PERSONE:</label>
 						<select name="addNum">
-							<c:forEach begin="1" end="4" varStatus="loop">
+							<c:forEach begin="1" end= "${offerta.posti_disponibili}" varStatus="loop">
 								<option value="${loop.index}">${loop.index}</option>
 							</c:forEach>
 						</select>

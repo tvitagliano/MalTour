@@ -3,22 +3,21 @@
 	pageEncoding="UTF-8"%><%@taglib prefix="c"
 	uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<%@ page import="java.util.List,GestioneServizi.Servizio,GestioneUtente.Utente"%>
+<%@ page
+	import="java.util.List,GestioneServizi.Servizio,GestioneUtente.Utente"%>
 <html>
 <head>
-		
-	<%
+<%
 		List <Servizio> servizi =  (List <Servizio>) request.getAttribute("servizi");
  		Utente utenti = (Utente) request.getAttribute("utente");
 	%>
-	
 
 <title>MALTOUR - ${param.pageTitle}</title>
 
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-
+<!--<link href="bare.min.css" rel="stylesheet"> http://www.barecss.com -->
 
 <script src="ricerca.js"></script>
 
@@ -309,6 +308,7 @@ body {
 					</button>
 					<div class="dropdown-content">
 						<c:choose>
+							
 							<c:when test="${utente == null}">
 								<menu>
 									<form action="Login" method="post" class="form-container">
@@ -319,68 +319,48 @@ body {
 									<a href="RegistrazioneForm">REGISTATI</a>
 								</menu>
 							</c:when>
-							
+
 							<c:otherwise>
-							<%
-							if ((utenti.gestore())== 1){
-							
-							%>
-							<a href="Profilo?id=<c:out value="${utente.id}"/>">Profilo</a>
-							<a href="MieiOrdini?id=<c:out value="${utente.id}"/>&username=<c:out value="${utente.username}>"/>">I
-								Miei Ordini
-							</a>
-							
-							<%
-							}
-		                    if((utenti.gestore())== 2){
-							%>
-							
-							<menu>
-							<c:if test="${utente.gestore=2}">
-								<a href="AdminServizio">Aggiungi Servizio</a>
-								<a href="AdminOfferta">Aggiungi Offerta</a>
-								<a href="AdminUtenti">Utenti Registrati</a>
-								<a href="Profilo?id=<c:out value="${utente.id}"/>">Profilo</a>
+								<menu>
 								
-							</c:if>
-							</menu>
+									<c:if test="${utente.gestoreOfferte}">
+										<a href="AdminServizio">Aggiungi Servizio</a>
+										<a href="AdminOfferta">Aggiungi Offerta</a>
+										<a href="AdminUtenti">Utenti Registrati</a>
+										<a href="Profilo?id=<c:out value="${utente.id}"/>">Profilo</a>
+									</c:if>
+								
+									<c:if test="${utente.cliente}">
+										<a href="Profilo?id=<c:out value="${utente.id}"/>">Profilo</a>
+										<a href="MieiOrdini?id=<c:out value="${utente.id}"/>&username=<c:out value="${utente.username}>"/>">I Miei Ordini</a>
+									</c:if>
+									
+									<c:if test="${utente.gestoreOrdini}">
+										<a href="Profilo?id=<c:out value="${utente.id}"/>">Profilo</a>
+										<a href="Ordini?id=<c:out value="${utente.id}"/>&username=<c:out value="${utente.username}>"/>">Ordini</a>
+									</c:if>
+									
+									
+									<h3>
+										Benvenut* <br> ${utente.nome}
+									</h3>
+									<form action="Logout">
+										<input type="submit" class="btns success" value="Logout">
+									</form>
+								</menu>
+							</c:otherwise>
 							
-							
-							<%
-                    		}
-                    		if ((utenti.gestore())== 3){
-                    		
-                 			%>
-                 			<a href="Profilo?id=<c:out value="${utente.id}"/>">Profilo</a>
-                 			<a href="MieiOrdini?id=<c:out value="${utente.id}"/>&username=<c:out value="${utente.username}>"/>">I
-								Miei Ordini
-							</a>
-                 			
-                 			<%
-               				}
-                 			%>
-                 			
-                 			<form action="Logout">
-								<input type="submit" class="btns success" value="Logout">
-							</form>
-                 			
-                 			<h3>
-								Benvenut* <br> ${utente.nome}
-							</h3>
-						
-						</c:otherwise>
 						</c:choose>
 					</div>
 				</div>
 
 				<!-- carrello -->
-				<a href="Carrello"><img src="img/carrello.png" width="30"
-					height="20"></a>
-
+				<c:if test="${utente.cliente}">
+					<a href="Carrello"><img src="img/carrello.png" width="30" height="20"></a>
+				</c:if>
 
 				<!-- contatti -->
-				<a href="About"><img id="contatti" src="img/contatti.png"
-					width="30" height="20"></a>
+				<a href="About"><img id="contatti" src="img/contatti.png" width="30" height="20"></a>
 
 			</div>
 		</div>

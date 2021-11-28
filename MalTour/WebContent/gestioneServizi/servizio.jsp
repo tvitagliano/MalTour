@@ -62,11 +62,11 @@
 
 <div class="content">
 
-	<c:if test="${!utente.admin}">
+	<c:if test="${!(utente.isGestoreOfferte)}">
 		<h1>${servizio.nome}</h1>
 	</c:if>
 	
-	<c:if test="${utente.admin}">
+	<c:if test="${utente.gestoreOfferte}">
 			<form action="AdminServizio" method="post">
 				<div class="row">
 		      		<div class="column">
@@ -90,8 +90,12 @@
 		  	</div>
 		  	<div class="column">
 			    <h3><a href="Offerta?id=${offerta.id}">${offerta.destinazione}</a></h3>
-				<p>${offerta.descrizione}</p>
-				<h4>Prezzo: ${offerta.prezzoCent} &euro;</h4>
+				<p>
+					<h3>DESCRIZIONE: ${offerta.descrizione}</h3>
+					
+					<h3>POSTI DISPONIBILI: ${offerta.posti_disponibili}</h3>
+				</p>
+				<h4>PREZZO: ${offerta.prezzoCent} &euro;</h4>
 				<h3>-------------------------------------------------------------------------------</h3>
   			</div>
 		</div>
