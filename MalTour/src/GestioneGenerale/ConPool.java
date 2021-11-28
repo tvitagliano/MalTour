@@ -4,12 +4,14 @@ package GestioneGenerale;
 
 import java.sql.Connection;
 
+
 import java.sql.SQLException;
 import java.util.TimeZone;
 import java.util.logging.Logger;
 
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.apache.tomcat.jdbc.pool.PoolProperties;
+
 
 public class ConPool {
 	private static DataSource datasource;

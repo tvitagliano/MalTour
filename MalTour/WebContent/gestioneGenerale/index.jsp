@@ -68,10 +68,10 @@
 				%>
 				<div class=column>
 					<h3>
-						<a href="Offerta?id=<%= offerta.getId() %>"><%= offerta.getNome() %></a>
+						<a href="Offerta?id=<%= offerta.getId() %>"><%= offerta.getDestinazione() %></a>
 					</h3>
 					<a href="Offerta?id=<%= offerta.getId() %>"><img src="img/offerte/<%= offerta.getId() %>.jpg" width="400" height="200"></a>
-					<h4>Prezzo: <%= offerta.getPrezzoEuro() %> &euro;</h4>
+					<h4>Prezzo: <%= offerta.getPrezzoCent() %> &euro;</h4>
 				
 				
 				</div>

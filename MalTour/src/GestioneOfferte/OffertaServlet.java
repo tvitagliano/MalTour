@@ -1,9 +1,8 @@
 
-package GestioneGenerale;
+package GestioneOfferte;
 
 import java.io.IOException;
-
-import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,23 +11,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import GestioneOfferte.Offerta;
-import GestioneOfferte.OffertaDAO;
+import GestioneGenerale.BaseServlet;
 
 
 
-
-@WebServlet("/Ricerca")
-public class RicercaServlet extends BaseServlet {
+@WebServlet("/Offerta")
+public class OffertaServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private final OffertaDAO offertaDAO = new OffertaDAO();
-
+	private static Logger logger=Logger.getLogger("OffertaServlet.java");
 	
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<Offerta> offerte = offertaDAO.doRetrieveByDestinazione(request.getParameter("q"), 0, 10);
-		request.setAttribute("offerte", offerte);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneGenerale/ricerca.jsp");
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		Offerta offerta = offertaDAO.doRetrieveById(id);
+		if (offerta == null) {
+			throw new MyServletException("Offerta non trovata.");
+		}
+		request.setAttribute("offerta", offerta);
+		logger.info("Uscito da OffertaServlet.java");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneOfferte/offerta.jsp");
 		requestDispatcher.forward(request, response);
 	}
 

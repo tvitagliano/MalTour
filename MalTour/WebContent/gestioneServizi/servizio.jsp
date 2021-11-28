@@ -1,0 +1,117 @@
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%><%@taglib prefix="c"
+	uri="http://java.sun.com/jsp/jstl/core"%>
+<jsp:include page="../gestioneGenerale/header.jsp">
+	<jsp:param name="pageTitle" value="${servizio.nome}"/>
+</jsp:include>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+	
+	.btns {
+	  border: 2px solid black;
+	  background-color: white;
+	  color: black;
+	  padding: 14px 28px;
+	  font-size: 16px;
+	  cursor: pointer;
+	}
+	
+	/* #00ced1 */
+	.success {
+	  border-color: #00ced1;
+	  color: #00ced1;
+	}
+	
+	.success:hover {
+	  background-color: #00ced1;
+	  color: white;
+	}
+
+	/* Create two equal columns that floats next to each other */
+	.column {
+	  float: left;
+	  width: 50%;
+	  padding: 10px;
+	 }
+	
+	/* Clear floats after the columns */
+	.row:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+	
+	/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+	@media screen and (max-width: 600px) {
+	  .column {
+	    width: 100%;
+	  }
+	}
+	
+	/* Style the content */
+	.content {
+	  padding: 60px;
+	}
+
+	</style>
+</head>
+<body>
+
+<div class="content">
+
+	<c:if test="${!utente.admin}">
+		<h1>${servizio.nome}</h1>
+	</c:if>
+	
+	<c:if test="${utente.admin}">
+			<form action="AdminServizio" method="post">
+				<div class="row">
+		      		<div class="column">
+		        		 <h1> ${servizio.nome} </h1>
+		      		</div>
+		      		<div class="column">
+		        		<input type="hidden" class="btns success"name="id" value="${servizio.id}">
+						<input type="submit"class="btns success" value="Modifica">
+						<input type="submit"class="btns success" name="rimuovi" value="Rimuovi">
+		      		</div>
+	    		</div>
+    		</form>
+	</c:if>
+	
+	<h3>${servizio.descrizione}</h3>
+	
+	<c:forEach items="${offerte}" var="offerta">
+		<div class="row">
+		  	<div class="column">
+		    	<a href="Offerta?id=${offerta.id}"><img src="img/offerte/${offerta.id}.jpg" width="500" height="200"></a>
+		  	</div>
+		  	<div class="column">
+			    <h3><a href="Offerta?id=${offerta.id}">${offerta.destinazione}</a></h3>
+				<p>${offerta.descrizione}</p>
+				<h4>Prezzo: ${offerta.prezzoCent} &euro;</h4>
+				<h3>-------------------------------------------------------------------------------</h3>
+  			</div>
+		</div>
+	</c:forEach>
+
+
+	<c:if test="${empty offerte}">
+		<div class="row">
+			<div class="column" >
+			    <h2>Nessun offerta nel servizio.</h2>
+			</div>
+		</div>
+	</c:if>
+
+</div>
+
+</body>
+</html>
+
+
+<%@include file="../gestioneGenerale/footer.jsp"%>
+
+

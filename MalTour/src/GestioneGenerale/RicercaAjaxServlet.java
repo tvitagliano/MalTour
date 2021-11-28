@@ -32,9 +32,9 @@ public class RicercaAjaxServlet extends BaseServlet {
 		JSONArray prodJson = new JSONArray();
 		String query = request.getParameter("q");
 		if (query != null) {
-			List<Offerta> offerte = offertaDAO.doRetrieveByNome(query + "*", 0, 10);
+			List<Offerta> offerte = offertaDAO.doRetrieveByDestinazione(query + "*", 0, 10);
 			for (Offerta p : offerte) {
-				prodJson.put(p.getNome());
+				prodJson.put(p.getDestinazione());
 			}
 		}
 		response.setContentType("application/json");

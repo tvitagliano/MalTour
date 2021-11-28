@@ -3,21 +3,22 @@
 	pageEncoding="UTF-8"%><%@taglib prefix="c"
 	uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<%@ page
-	import="java.util.List,GestioneServizi.Servizio,GestioneUtente.Utente"%>
+<%@ page import="java.util.List,GestioneServizi.Servizio,GestioneUtente.Utente"%>
 <html>
 <head>
-<%
+		
+	<%
 		List <Servizio> servizi =  (List <Servizio>) request.getAttribute("servizi");
  		Utente utenti = (Utente) request.getAttribute("utente");
 	%>
+	
 
 <title>MALTOUR - ${param.pageTitle}</title>
 
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-<!--<link href="bare.min.css" rel="stylesheet"> http://www.barecss.com -->
+
 
 <script src="ricerca.js"></script>
 
@@ -318,27 +319,56 @@ body {
 									<a href="RegistrazioneForm">REGISTATI</a>
 								</menu>
 							</c:when>
-
+							
 							<c:otherwise>
-								<a>${utente.admin ? 'Admin' : 'Account'}</a>
-								<menu>
-									<c:if test="${utente.admin}">
-										<a href="AdminServizio">Aggiungi Servizio</a>
-										<a href="AdminOfferta">Aggiungi Offerta</a>
-										<a href="AdminUtenti">Utenti Registrati</a>
-										<a href="Profilo?id=<c:out value="${utente.id}"/>">Profilo</a>
-										<a
-											href="MieiOrdini?id=<c:out value="${utente.id}"/>&username=<c:out value="${utente.username}>"/>">I
-											Miei Ordini</a>
-									</c:if>
-									<h3>
-										Benvenut* <br> ${utente.nome}
-									</h3>
-									<form action="Logout">
-										<input type="submit" class="btns success" value="Logout">
-									</form>
-								</menu>
-							</c:otherwise>
+							<%
+							if ((utenti.gestore())== 1){
+							
+							%>
+							<a href="Profilo?id=<c:out value="${utente.id}"/>">Profilo</a>
+							<a href="MieiOrdini?id=<c:out value="${utente.id}"/>&username=<c:out value="${utente.username}>"/>">I
+								Miei Ordini
+							</a>
+							
+							<%
+							}
+		                    if((utenti.gestore())== 2){
+							%>
+							
+							<menu>
+							<c:if test="${utente.gestore=2}">
+								<a href="AdminServizio">Aggiungi Servizio</a>
+								<a href="AdminOfferta">Aggiungi Offerta</a>
+								<a href="AdminUtenti">Utenti Registrati</a>
+								<a href="Profilo?id=<c:out value="${utente.id}"/>">Profilo</a>
+								
+							</c:if>
+							</menu>
+							
+							
+							<%
+                    		}
+                    		if ((utenti.gestore())== 3){
+                    		
+                 			%>
+                 			<a href="Profilo?id=<c:out value="${utente.id}"/>">Profilo</a>
+                 			<a href="MieiOrdini?id=<c:out value="${utente.id}"/>&username=<c:out value="${utente.username}>"/>">I
+								Miei Ordini
+							</a>
+                 			
+                 			<%
+               				}
+                 			%>
+                 			
+                 			<form action="Logout">
+								<input type="submit" class="btns success" value="Logout">
+							</form>
+                 			
+                 			<h3>
+								Benvenut* <br> ${utente.nome}
+							</h3>
+						
+						</c:otherwise>
 						</c:choose>
 					</div>
 				</div>
