@@ -32,7 +32,7 @@ public class UtenteDAO {
 				u.setPasswordhash(rs.getString(3));
 				u.setNome(rs.getString(4));
 				u.setEmail(rs.getString(5));
-				u.setGestione(rs.getInt(6));
+				u.setGestore(rs.getInt(6));
 				utenti.add(u);
 			}
 			return utenti;
@@ -73,7 +73,7 @@ public class UtenteDAO {
 				p.setPasswordhash(rs.getString(3));
 				p.setNome(rs.getString(4));
 				p.setEmail(rs.getString(5));
-				p.setGestione(rs.getInt(6));
+				p.setGestore(rs.getInt(6));
 				return p;
 			}
 			return null;
@@ -95,7 +95,7 @@ public class UtenteDAO {
                 p.setPasswordhash(rs.getString(3));
                 p.setNome(rs.getString(4));
                 p.setEmail(rs.getString(5));
-                p.setGestione(rs.getInt(6));
+                p.setGestore(rs.getInt(6));
                 return p;
             }
             return null;
@@ -117,7 +117,7 @@ public class UtenteDAO {
 				p.setPasswordhash(rs.getString(3));
 				p.setNome(rs.getString(4));
 				p.setEmail(rs.getString(5));
-				p.setGestione(rs.getInt(6));
+				p.setGestore(rs.getInt(6));
 				return p;
 			}
 			return null;

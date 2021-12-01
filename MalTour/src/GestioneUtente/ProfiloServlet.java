@@ -36,7 +36,7 @@ public class ProfiloServlet extends BaseServlet {
 
         request.setAttribute("utente", utente);
         logger.info("Entarto in ProfiloServlet.java");
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneUtente/informazioniutente.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/gestioneUtente/profiloUtente.jsp");
         requestDispatcher.forward(request, response);
 
     }

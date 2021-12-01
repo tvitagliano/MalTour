@@ -28,7 +28,7 @@ public class AdminUtentiServlet extends BaseServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		checkAdmin(request);
+		
 
 		List<Utente> utenti = utenteDAO.doRetrieveAll(0, 10);
 		request.setAttribute("utenti", utenti);

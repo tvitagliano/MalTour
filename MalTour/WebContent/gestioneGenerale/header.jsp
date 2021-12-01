@@ -326,7 +326,7 @@ body {
 									<c:if test="${utente.gestoreOfferte}">
 										<a href="AdminServizio">Aggiungi Servizio</a>
 										<a href="AdminOfferta">Aggiungi Offerta</a>
-										<a href="AdminUtenti">visualizza Utenti</a>
+										<a href="AdminUtenti">Visualizza Utenti</a>
 										<a href="Profilo?id=<c:out value="${utente.id}"/>">Profilo</a>
 									</c:if>
 								

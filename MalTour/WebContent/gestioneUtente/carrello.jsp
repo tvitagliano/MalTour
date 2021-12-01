@@ -35,7 +35,7 @@
   
   	<c:forEach var="pq" items="${carrello.prodotti}" >
 	    <tr>
-	      	<td><a href="#"><img src="img/offerte/${pq.offerta.id}.jpg" width="500" height="200"></a></td>
+	      	<td><a href="#"><img src="img/offerte/${pq.offerta.id}.jpg" width="300" height="200"></a></td>
 			<td>
 				<h3><a href="Offerta?id=${pq.offerta.id}">${pq.offerta.nome}</a></h3>
 				<p>${pq.offerta.descrizione}</p>
@@ -63,8 +63,8 @@
 	      <td> </td>
 	      	<td>
 				<h2>Totale: ${carrello.prezzoTotEuro} &euro;</h2>
-				<form action="Spedizione">
-					<input  type="submit"  class="btnn success" value="Acquista">
+				<form action="EffettuaOrdine">
+					<input  type="submit"  class="btnn success" value="Effettua Ordine">
 				</form>
 			</td>
 		</tr>

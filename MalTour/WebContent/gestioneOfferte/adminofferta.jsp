@@ -109,25 +109,89 @@
     			
     			<div class="rows">
       				<div class="col-25">
-        				<label>Nome</label>
+        				<label>DESTINAZIONE</label>
       				</div>
       				<div class="col-75">
-        				<input type="text" name="nome" value="${offerta.nome}">
+        				<input type="text" name="nome" value="${offerta.destinazione}">
       				</div>
     			</div>
 				
 				<div class="rows">
       				<div class="col-25">
-        				<label>Descrizione</label>
+        				<label>DESCRIZIONE</label>
       				</div>
       				<div class="col-75">
         				<textarea name="descrizione">${offerta.descrizione}</textarea>
       				</div>
     			</div>
+    			<div class="rows">
+      				<div class="col-25">
+        				<label>DATA PARTENZA</label>
+      				</div>
+      				<div class="col-75">
+        				<textarea name="descrizione">${offerta.data_partenza}</textarea>
+      				</div>
+    			</div>
+    			<div class="rows">
+      				<div class="col-25">
+        				<label>ORA PARTENZA</label>
+      				</div>
+      				<div class="col-75">
+        				<textarea name="descrizione">${offerta.ora_partenza}</textarea>
+      				</div>
+    			</div>
+    			<div class="rows">
+      				<div class="col-25">
+        				<label>DATA RITORNO</label>
+      				</div>
+      				<div class="col-75">
+        				<textarea name="descrizione">${offerta.data_ritorno}</textarea>
+      				</div>
+    			</div>
+    			<div class="rows">
+      				<div class="col-25">
+        				<label>ORA RITORNO</label>
+      				</div>
+      				<div class="col-75">
+        				<textarea name="descrizione">${offerta.ora_ritorno}</textarea>
+      				</div>
+    			</div>
+    			<div class="rows">
+      				<div class="col-25">
+        				<label>PARTENZA DA</label>
+      				</div>
+      				<div class="col-75">
+        				<textarea name="descrizione">${offerta.partenza_da}</textarea>
+      				</div>
+    			</div>
+    			<div class="rows">
+      				<div class="col-25">
+        				<label>ARRIVO A </label>
+      				</div>
+      				<div class="col-75">
+        				<textarea name="descrizione">${offerta.arrivo_a}</textarea>
+      				</div>
+    			</div>
+    			<div class="rows">
+      				<div class="col-25">
+        				<label>PERNOTTAMENTO</label>
+      				</div>
+      				<div class="col-75">
+        				<textarea name="descrizione">${offerta.pernottamento}</textarea>
+      				</div>
+    			</div>
+    			<div class="rows">
+      				<div class="col-25">
+        				<label>POSTI DISPONIBILI</label>
+      				</div>
+      				<div class="col-75">
+        				<textarea name="descrizione">${offerta.posti_disponibili}</textarea>
+      				</div>
+    			</div>
 				
 				<div class="rows">
       				<div class="col-25">
-        				<label>Prezzo (cent):</label>
+        				<label>PREZZO (cent):</label>
       				</div>
       				<div class="col-75">
         				<input type="number" name="prezzoCent" value="${offerta.prezzoCent}">

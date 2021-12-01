@@ -4,9 +4,18 @@
 <jsp:include page="../gestioneGenerale/header.jsp">
     <jsp:param name="pageTitle" value="Carrello"/>
 </jsp:include>
+
 <!DOCTYPE html>
+<%@ page
+	import="java.util.List,GestioneOrdini.Ordine,GestioneUtente.Utente,GestioneOrdini.ComponentiViaggio"%>
 <html>
 <head>
+<%
+		List <Ordine> componenti =  (List <Ordine>) request.getAttribute("componenti");
+ 		Utente utenti = (Utente) request.getAttribute("utente");
+%>
+
+
 	<style>
 	input[type=text], select {
 	  width: 100%;
@@ -61,9 +70,27 @@
             <input type="hidden" name="id" value="${utente.id}">
             <input type="hidden" name="prezzo" value="${carrello.getPrezzoTotEuro()}">
 			
-			<label for="fname">Specifica un indirizzo di spedizione del pacchetto viaggio</label>
+			<label for="fname">Specifica l'email destinatario</label>
+             <input type="text" name="indirizzo">
+             <label for="fname">inserisci componenti viaggio </label>
+             	<% 
+					for(int i = 0; i< componenti.size() ; i++){
+						Ordine ordine =  componenti.get(i);
+				%>
+				<label for="fname">Nome</label>
+             	<input type="text" name="nome">
+             	
+             	<label for="fname">Cognome</label>
+             	<input type="text" name="cognome">
+             	
+             	<label for="fname">data di nascita</label>
+             	<input type="text" name="data_nascita">
+             		
+				<%
+					}
+				%>
             
-            <input type="text" name="indirizzo">
+             
             <input id="acquista" class="btnn success" type="submit" value="Procedi" >
 
 	</form>

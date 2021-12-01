@@ -9,6 +9,7 @@ import java.io.IOException;
 
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,6 +26,7 @@ import GestioneOfferte.MyServletException;
 public class AdminServizioServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private final ServizioDAO servizioDAO = new ServizioDAO();
+	private static Logger logger=Logger.getLogger("AdminServizioServlet.java");
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -99,7 +101,7 @@ public class AdminServizioServlet extends BaseServlet {
 				request.setAttribute("servizio", servizio);
 			}
 		}
-
+		logger.info("Entarto in AdminServizioServlet.java");
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneServizi/adminservizio.jsp");
 		requestDispatcher.forward(request, response);
 	}
