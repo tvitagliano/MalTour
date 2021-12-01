@@ -15,7 +15,7 @@ import GestioneOfferte.MyServletException;
 import java.io.IOException;
 
 @WebServlet("/Ordine")
-public class OrdineServlet extends BaseServlet {
+public class AggiungiComponentiServlet extends BaseServlet {
 
     /**
 	 * 

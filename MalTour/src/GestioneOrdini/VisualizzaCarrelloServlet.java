@@ -1,5 +1,5 @@
 
-package GestioneUtente;
+package GestioneOrdini;
 
 import java.io.IOException;
 
@@ -16,11 +16,11 @@ import javax.servlet.http.HttpSession;
 
 import GestioneGenerale.BaseServlet;
 import GestioneOfferte.OffertaDAO;
-import GestioneUtente.Carrello.OffertaQuantita;
+import GestioneOrdini.Carrello.OffertaQuantita;
 
 
 @WebServlet("/Carrello")
-public class CarrelloServlet extends BaseServlet{
+public class VisualizzaCarrelloServlet extends BaseServlet{
 	private static final long serialVersionUID = 1L;
 	private final OffertaDAO offertaDAO = new OffertaDAO();
 

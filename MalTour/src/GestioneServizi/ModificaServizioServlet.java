@@ -23,7 +23,7 @@ import GestioneOfferte.MyServletException;
 
 
 @WebServlet("/AdminServizio")
-public class AdminServizioServlet extends BaseServlet {
+public class ModificaServizioServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private final ServizioDAO servizioDAO = new ServizioDAO();
 	private static Logger logger=Logger.getLogger("AdminServizioServlet.java");

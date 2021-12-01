@@ -24,7 +24,7 @@ import GestioneOfferte.OffertaDAO;
 
 
 @WebServlet("/Servizio")
-public class ServizioServlet extends BaseServlet {
+public class VisualizzaServizioServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private final OffertaDAO offertaDAO = new OffertaDAO();
 	private static Logger logger=Logger.getLogger("ServizioServlet.java");

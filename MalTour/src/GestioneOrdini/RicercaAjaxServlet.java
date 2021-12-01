@@ -1,5 +1,5 @@
 
-package GestioneGenerale;
+package GestioneOrdini;
 
 import java.io.IOException;
 
@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
 
+import GestioneGenerale.BaseServlet;
 import GestioneOfferte.Offerta;
 import GestioneOfferte.OffertaDAO;
 

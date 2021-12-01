@@ -18,7 +18,7 @@ import java.util.List;
 
 
 @WebServlet("/MieiOrdini")
-public class MieOrdiniServlet extends BaseServlet {
+public class VisualizzaOrdiniServlet extends BaseServlet {
     private static final long serialVersionUID = 1L;
     private final OrdineDAO ordineDAO = new OrdineDAO();
 

@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 
 @WebServlet("/Profilo")
-public class ProfiloServlet extends BaseServlet {
+public class VisualizzaProfiloServlet extends BaseServlet {
     private static final long serialVersionUID = 1L;
     private UtenteDAO utenteDAO = new UtenteDAO();
     private static Logger logger=Logger.getLogger("ProfiloServlet.java");

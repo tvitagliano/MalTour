@@ -19,7 +19,7 @@ import GestioneGenerale.BaseServlet;
 
 
 @WebServlet("/EliminaAccount")
-public class EliminaAccountServlet extends BaseServlet {
+public class RimuoviProfiloServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private final UtenteDAO utenteDAO = new UtenteDAO();
 	private static Logger logger=Logger.getLogger("EliminaAccountServlet.java");

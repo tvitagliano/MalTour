@@ -1,5 +1,5 @@
 
-package GestioneUtente;
+package GestioneOrdini;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;

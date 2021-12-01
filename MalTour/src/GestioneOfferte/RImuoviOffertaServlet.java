@@ -23,7 +23,7 @@ import GestioneUtente.Utente;
 
 
 @WebServlet("/AdminOfferta")
-public class AdminOffertaServlet extends BaseServlet {
+public class RImuoviOffertaServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private final OffertaDAO offertaDAO = new OffertaDAO();
 
