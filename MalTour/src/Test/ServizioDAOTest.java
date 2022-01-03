@@ -29,9 +29,7 @@ public class ServizioDAOTest {
 
 
     	Servizio categoriaValida = new Servizio(10, "Categoria1", "Descrione1");
-    	Servizio categoriaNonValida = new Servizio(11, "Categoria1", "Descrione1");
-
-        int succ = categoriaDAO.doSave(categoriaValida);
+    	int succ = categoriaDAO.doSave(categoriaValida);
         assertEquals(1, succ);
 
 
@@ -51,7 +49,7 @@ public class ServizioDAOTest {
     @Test
     public void doDelete() {
 
-        int succ = categoriaDAO.doDelete(7);
+        int succ = categoriaDAO.doDelete(1);
         assertEquals(1, succ);
 
     }
@@ -61,8 +59,8 @@ public class ServizioDAOTest {
 
     	Servizio categoria = new Servizio();
 
-        categoria = categoriaDAO.doRetrieveByNome("Ottone");
-        assertEquals("Ottone", categoria.getNome());
+        categoria = categoriaDAO.doRetrieveByNome("Minicrociere");
+        assertEquals("Minicrociere", categoria.getNome());
 
     }
 
@@ -71,8 +69,8 @@ public class ServizioDAOTest {
 
     	Servizio categoria = new Servizio();
 
-        categoria = categoriaDAO.doRetrieveByDescrizione("Prodotti in Ottone");
-        assertEquals("Prodotti in Ottone", categoria.getDescrizione());
+        categoria = categoriaDAO.doRetrieveByDescrizione("");
+        assertEquals("", categoria.getDescrizione());
 
 
     }

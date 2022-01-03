@@ -105,6 +105,7 @@ public class ServizioDAO {
 		try (Connection con = ConPool.getConnection()) {
 			PreparedStatement ps = con.prepareStatement("DELETE FROM servizio WHERE id=?");
 			ps.setInt(1, id);
+			
 			if (ps.executeUpdate() != 1) {
 				throw new RuntimeException("DELETE error.");
 			}

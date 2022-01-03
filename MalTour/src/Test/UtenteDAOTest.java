@@ -39,8 +39,9 @@ public class UtenteDAOTest {
 
         Utente utente = new Utente();
 
-        utente = utenteDAO.doRetrieveByUsernamePassword("giovanni", "password1");
+        utente = utenteDAO.doRetrieveByUsernamePassword("Giovanni", "password1");
         assertEquals("Giovanni", utente.getUsername());
+        assertEquals("password1", utente.getPasswordhash());
 
     }
 
@@ -48,7 +49,7 @@ public class UtenteDAOTest {
     public void doRetrieveByUsername() {
         Utente utente = new Utente();
 
-        utente = utenteDAO.doRetrieveByUsername("giovanni");
+        utente = utenteDAO.doRetrieveByUsername("Giovanni");
         assertEquals("Giovanni", utente.getUsername());
     }
 
@@ -57,7 +58,7 @@ public class UtenteDAOTest {
 
         Utente utente = new Utente();
 
-        utente = utenteDAO.doRetrieveByEmail("utente1@libero.it");
+        utente = utenteDAO.doRetrieveByEmail("");
         assertEquals("utente1@libero.it", utente.getEmail());
     }
 

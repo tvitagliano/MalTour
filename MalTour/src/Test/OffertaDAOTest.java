@@ -41,7 +41,7 @@ public class OffertaDAOTest {
     public void doSave() {
 
 
-    	Offerta prodotto= new Offerta(1234, "destinazione","descrizione", "data_partenza", "ora_partenza",
+    	Offerta prodotto= new Offerta(1, "destinazione","descrizione", "data_partenza", "ora_partenza",
     			"data_ritorno","ora_ritorno", "partenza_da", "arrivo_a", "pernottamento",
     			5, 150, null);
         int pippo = prodottoDAO.doSave(prodotto);
@@ -54,7 +54,7 @@ public class OffertaDAOTest {
 
 
     	Offerta prodotto= new Offerta(1234, "destinazione","descrizione", "data_partenza", "ora_partenza",
-    			"data_ritorno","ora_ritorno", "partenza_da", "arrivo_a", "pernottamento",
+    			"data_ritorno","oraritorno", "partenzada", "arrivoa", "pernottamento",
     			5, 150, null);
         boolean succ = prodottoDAO.doUpdate(prodotto);
 
