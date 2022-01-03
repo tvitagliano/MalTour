@@ -31,54 +31,8 @@ public class ServizioDAO {
 			throw new RuntimeException(e);
 		}
 	}
-	public int doSave1(Servizio categoria) {
-        try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("INSERT INTO servizio (nome, descrizione) VALUES(?,?)",
-                    Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, categoria.getNome());
-            ps.setString(2, categoria.getDescrizione());
-            if (ps.executeUpdate() != 1) {
-                throw new RuntimeException("Errore nella query di inserimento");
-            }
-            ResultSet rs = ps.getGeneratedKeys();
-            rs.next();
-            categoria.setId(rs.getInt(1));
-            return 1;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }
 
-	public boolean doUpdate1(Servizio categoria) {
-        try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("UPDATE servizio SET nome=?, descrizione=? WHERE id=?");
-            ps.setString(1, categoria.getNome());
-            ps.setString(2, categoria.getDescrizione());
-            ps.setInt(3, categoria.getId());
-            if (ps.executeUpdate() != 1) {
-                throw new RuntimeException("Errore nella query di modifica");
-            }
-            return true;
-        } catch (SQLException e) {
 
-            return false;
-        }
-    }
-	
-	public int doDelete1(int id) {
-        try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("DELETE FROM servizio WHERE id=?");
-            ps.setInt(1, id);
-            if (ps.executeUpdate() != 1) {
-                throw new RuntimeException("Errore nella query di cancellazione");
-            }
-            return 1;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }
 
     public Servizio doRetrieveByNome(String nome) {
         try (Connection con = ConPool.getConnection()) {
@@ -114,7 +68,7 @@ public class ServizioDAO {
         }
     }
 
-	public void doSave(Servizio servizio) {
+	public int doSave(Servizio servizio) {
 		try (Connection con = ConPool.getConnection()) {
 			PreparedStatement ps = con.prepareStatement("INSERT INTO servizio (nome, descrizione) VALUES(?,?)",
 					Statement.RETURN_GENERATED_KEYS);
@@ -126,12 +80,13 @@ public class ServizioDAO {
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
 			servizio.setId(rs.getInt(1));
+			return 1;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public void doUpdate(Servizio servizio) {
+	public boolean doUpdate(Servizio servizio) {
 		try (Connection con = ConPool.getConnection()) {
 			PreparedStatement ps = con.prepareStatement("UPDATE servizio SET nome=?, descrizione=? WHERE id=?");
 			ps.setString(1, servizio.getNome());
@@ -140,18 +95,20 @@ public class ServizioDAO {
 			if (ps.executeUpdate() != 1) {
 				throw new RuntimeException("UPDATE error.");
 			}
+			return true;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public void doDelete(int id) {
+	public int doDelete(int id) {
 		try (Connection con = ConPool.getConnection()) {
 			PreparedStatement ps = con.prepareStatement("DELETE FROM servizio WHERE id=?");
 			ps.setInt(1, id);
 			if (ps.executeUpdate() != 1) {
 				throw new RuntimeException("DELETE error.");
 			}
+			return 1;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

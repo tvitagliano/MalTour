@@ -196,10 +196,13 @@
 	<div class="des">
 		
 		<c:if test="${utente.gestoreOfferte}">
-				<form action="AdminOfferta" method="post">
+				<form action="RimuoviOfferta" method="post">
+					<input type="hidden" name="id" value="${offerta.id}">
+					<input type="submit" class="btnn success" name="rimuovi" value="Rimuovi">
+				</form>
+				<form action="ModificaOfferta" method="post">
 					<input type="hidden" name="id" value="${offerta.id}">
 					<input type="submit" class="btnn success" value="Modifica">
-					<input type="submit" class="btnn success" name="rimuovi" value="Rimuovi">
 				</form>
 		</c:if>
 		
@@ -212,7 +215,7 @@
 		
 		<c:if test="${utente.cliente}">
 			<h4>PREZZO PER PERSONA: ${offerta.prezzoCent} &euro;</h4>
-				<form action="Carrello" method="post">
+				<form action="AggiungiCarrello" method="post">
 					<label>PERSONE:</label>
 						<select name="addNum">
 							<c:forEach begin="1" end= "${offerta.posti_disponibili}" varStatus="loop">

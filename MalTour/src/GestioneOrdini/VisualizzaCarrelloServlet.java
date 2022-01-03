@@ -2,10 +2,6 @@
 package GestioneOrdini;
 
 import java.io.IOException;
-
-
-
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,10 +12,10 @@ import javax.servlet.http.HttpSession;
 
 import GestioneGenerale.BaseServlet;
 import GestioneOfferte.OffertaDAO;
-import GestioneOrdini.Carrello.OffertaQuantita;
 
 
-@WebServlet("/Carrello")
+
+@WebServlet("/VisualizzaCarrello")
 public class VisualizzaCarrelloServlet extends BaseServlet{
 	private static final long serialVersionUID = 1L;
 	private final OffertaDAO offertaDAO = new OffertaDAO();
@@ -30,6 +26,7 @@ public class VisualizzaCarrelloServlet extends BaseServlet{
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
 		Carrello carrello = (Carrello) session.getAttribute("carrello");
 		if (carrello == null) {
@@ -37,37 +34,7 @@ public class VisualizzaCarrelloServlet extends BaseServlet{
 			session.setAttribute("carrello", carrello);
 		}
 
-		String prodIdStr = request.getParameter("prodId");
-		if (prodIdStr != null) {
-			int prodId = Integer.parseInt(prodIdStr);
-
-			String addNumStr = request.getParameter("addNum");
-			if (addNumStr != null) {
-				int addNum = Integer.parseInt(addNumStr);
-
-				OffertaQuantita prodQuant = carrello.get(prodId);
-				if (prodQuant != null) {
-					prodQuant.setQuantita(prodQuant.getQuantita() + addNum);
-				} else {
-					carrello.put(offertaDAO.doRetrieveById(prodId), addNum);
-				}
-			} else {
-				String setNumStr = request.getParameter("setNum");
-				if (setNumStr != null) {
-					int setNum = Integer.parseInt(setNumStr);
-					if (setNum <= 0) {
-						carrello.remove(prodId);
-					} else {
-						OffertaQuantita prodQuant = carrello.get(prodId);
-						if (prodQuant != null) {
-							prodQuant.setQuantita(setNum);
-						} else {
-							carrello.put(offertaDAO.doRetrieveById(prodId), setNum);
-						}
-					}
-				}
-			}
-		}
+		
 
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneUtente/carrello.jsp");
 		requestDispatcher.forward(request, response);

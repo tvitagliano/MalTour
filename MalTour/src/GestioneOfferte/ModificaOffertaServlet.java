@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javax.servlet.RequestDispatcher;
@@ -22,10 +23,11 @@ import GestioneServizi.Servizio;
 import GestioneUtente.Utente;
 
 
-@WebServlet("/AdminOfferta")
+@WebServlet("/ModificaOfferta")
 public class ModificaOffertaServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private final OffertaDAO offertaDAO = new OffertaDAO();
+	private static Logger logger=Logger.getLogger("ModificaOffertaServlet.java");
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -33,6 +35,8 @@ public class ModificaOffertaServlet extends BaseServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		logger.info("Entarto in ModificaOffertaServlet.java");
 		Utente utente = (Utente) request.getSession().getAttribute("utente");
 		if (utente == null || (utente.gestore())==1) {
 			throw new MyServletException("Utente non autorizzato");
@@ -98,10 +102,7 @@ public class ModificaOffertaServlet extends BaseServlet {
 						return c;
 					}).collect(Collectors.toList()) : Collections.emptyList());
 
-					if (idstr.isEmpty()) { // aggiunta nuovo prodotto
-						offertaDAO.doSave(offerta);
-						request.setAttribute("notifica", "Offerta aggiunta con successo.");
-					} else { // modifica prodotto esistente
+					if (!idstr.isEmpty()) {  // modifica prodotto esistente
 						offerta.setId(Integer.parseInt(idstr));
 						offertaDAO.doUpdate(offerta);
 						request.setAttribute("notifica", "Offerta modificata con successo.");
@@ -114,7 +115,7 @@ public class ModificaOffertaServlet extends BaseServlet {
 			}
 		}
 
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneOfferte/adminofferta.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneOfferte/aggiungiOfferta.jsp");
 		requestDispatcher.forward(request, response);
 	}
 

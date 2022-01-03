@@ -1,10 +1,10 @@
+
 package GestioneOrdini;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
-import GestioneServizi.Servizio;
+
 
 public class Ordine {
 	private int id;

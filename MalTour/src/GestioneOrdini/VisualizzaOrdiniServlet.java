@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet("/MieiOrdini")
+@WebServlet("/VIsualizzaOrdini")
 public class VisualizzaOrdiniServlet extends BaseServlet {
     private static final long serialVersionUID = 1L;
     private final OrdineDAO ordineDAO = new OrdineDAO();

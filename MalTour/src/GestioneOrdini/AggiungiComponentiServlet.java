@@ -71,7 +71,7 @@ public class AggiungiComponentiServlet extends BaseServlet {
 
             ordineDAO.doSave(ordine);
         }
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneOrdini/verificaOrdine.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneOrdini/visualizzaOrdine.jsp");
         requestDispatcher.forward(request, response);
 
 

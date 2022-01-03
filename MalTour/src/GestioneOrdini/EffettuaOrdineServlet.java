@@ -27,7 +27,7 @@ public class EffettuaOrdineServlet extends BaseServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneOrdini/acquisto.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneOrdini/aggiungiComponenti.jsp");
         requestDispatcher.forward(request, response);
 
 

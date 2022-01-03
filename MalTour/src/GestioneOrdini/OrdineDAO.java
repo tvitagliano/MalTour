@@ -2,12 +2,12 @@ package GestioneOrdini;
 
 import java.sql.*;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 import GestioneGenerale.ConPool;
-import GestioneOfferte.Offerta;
-import GestioneServizi.Servizio;
+
 
 public class OrdineDAO {
 

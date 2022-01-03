@@ -281,13 +281,13 @@ body {
 					</button>
 					<div class="dropdown-content">
 						<% 
-					for(int i = 0; i< servizi.size() ; i++){
-						Servizio servizio =  servizi.get(i);
-				%>
-						<a href="Servizio?id=<%=servizio.getId() %>"> <%= servizio.getNome() %></a>
+						for(int i = 0; i< servizi.size() ; i++){
+							Servizio servizio =  servizi.get(i);
+						%>
+						<a href="VisualizzaServizio?id=<%=servizio.getId() %>"> <%= servizio.getNome() %></a>
 						<%
-					}
-				%>
+						}
+						%>
 					</div>
 				</div>
 
@@ -324,20 +324,20 @@ body {
 								<menu>
 								
 									<c:if test="${utente.gestoreOfferte}">
-										<a href="AdminServizio">Aggiungi Servizio</a>
-										<a href="AdminOfferta">Aggiungi Offerta</a>
-										<a href="AdminUtenti">Visualizza Utenti</a>
+										<a href="AggiungiServizio">Aggiungi Servizio</a>
+										<a href="AggiungiOfferta">Aggiungi Offerta</a>
+										<a href="VisualizzaUtenti">Visualizza Utenti</a>
 										<a href="Profilo?id=<c:out value="${utente.id}"/>">Profilo</a>
 									</c:if>
 								
 									<c:if test="${utente.cliente}">
 										<a href="Profilo?id=<c:out value="${utente.id}"/>">Profilo</a>
-										<a href="MieiOrdini?id=<c:out value="${utente.id}"/>&username=<c:out value="${utente.username}>"/>">I Miei Ordini</a>
+										<a href="VIsualizzaOrdini?id=<c:out value="${utente.id}"/>&username=<c:out value="${utente.username}>"/>">I Miei Ordini</a>
 									</c:if>
 									
 									<c:if test="${utente.gestoreOrdini}">
 										<a href="Profilo?id=<c:out value="${utente.id}"/>">Profilo</a>
-										<a href="Ordini">Ordini</a>
+										<a href="OrdiniOperatore">Ordini</a>
 									</c:if>
 									
 									
@@ -356,7 +356,7 @@ body {
 
 				<!-- carrello -->
 				<c:if test="${utente.cliente}">
-					<a href="Carrello"><img src="img/carrello.png" width="30" height="20"></a>
+					<a href="VisualizzaCarrello"><img src="img/carrello.png" width="30" height="20"></a>
 				</c:if>
 
 				<!-- contatti -->

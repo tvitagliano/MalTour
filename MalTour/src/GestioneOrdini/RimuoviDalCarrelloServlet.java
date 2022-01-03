@@ -19,7 +19,7 @@ import GestioneOfferte.OffertaDAO;
 import GestioneOrdini.Carrello.OffertaQuantita;
 
 
-@WebServlet("/Carrello")
+@WebServlet("/RimuoviCarrello")
 public class RimuoviDalCarrelloServlet extends BaseServlet{
 	private static final long serialVersionUID = 1L;
 	private final OffertaDAO offertaDAO = new OffertaDAO();

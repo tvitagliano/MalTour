@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javax.servlet.RequestDispatcher;
@@ -22,29 +23,26 @@ import GestioneServizi.Servizio;
 import GestioneUtente.Utente;
 
 
-@WebServlet("/AdminOfferta")
+@WebServlet("/AggiungiOfferta")
 public class AggiungiOffertaServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private final OffertaDAO offertaDAO = new OffertaDAO();
-
+	private String idstr;
+	private static Logger logger=Logger.getLogger("AggiungiOffertaServlet.java");
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		logger.info("Entarto in AggiungiOffertaServlet.java");
 		Utente utente = (Utente) request.getSession().getAttribute("utente");
 		if (utente == null || (utente.gestore())==1) {
 			throw new MyServletException("Utente non autorizzato");
 		}
 
-		String idstr = request.getParameter("id");
-		if (idstr != null) {
-			if (request.getParameter("rimuovi") != null) {
-				offertaDAO.doDelete(Integer.parseInt(idstr));
-				request.setAttribute("notifica", "Offerta rimossa con successo.");
-				
-			} else {
+		idstr = request.getParameter("id");
+		if (idstr == null) {
 				Offerta offerta;
 				
 				String destinazione = request.getParameter("destinazione");
@@ -59,25 +57,7 @@ public class AggiungiOffertaServlet extends BaseServlet {
 				String posti_disponibili = request.getParameter("posti_disponibili");
 				String prezzoCent = request.getParameter("prezzoCent");
 				
-				
-				
-				
-				if (destinazione != null && descrizione != null && prezzoCent != null) { // modifica/aggiunta prodotto
-					
-					
-
-                    if (!(destinazione != null && destinazione.trim().length() > 0)) {
-                        throw new MyServletException("Non hai selezionato alcuna destinazione! Riprova.");
-                    }
-
-                    if (!(descrizione != null && descrizione.trim().length() > 0)) {
-                        throw new MyServletException("Non hai selezionato alcuna descrizione! Riprova.");
-                    }
-                    if (!(prezzoCent != null && prezzoCent.trim().length() > 0)) {
-                        throw new MyServletException("Non hai selezionato alcun prezzo! Riprova.");
-                    }
-                   
-                    //aggiunta Offerta
+				//aggiunta Offerta
 					offerta = new Offerta();
 					offerta.setDestinazione(destinazione);
 					offerta.setDescrizione(descrizione);
@@ -101,20 +81,13 @@ public class AggiungiOffertaServlet extends BaseServlet {
 					if (idstr.isEmpty()) { // aggiunta nuovo prodotto
 						offertaDAO.doSave(offerta);
 						request.setAttribute("notifica", "Offerta aggiunta con successo.");
-					} else { // modifica prodotto esistente
-						offerta.setId(Integer.parseInt(idstr));
-						offertaDAO.doUpdate(offerta);
-						request.setAttribute("notifica", "Offerta modificata con successo.");
-					}
-				} else {
-					int id = Integer.parseInt(idstr);
-					offerta = offertaDAO.doRetrieveById(id);
-				}
+					} 
+				
 				request.setAttribute("offerta", offerta);
 			}
-		}
+		
 
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneOfferte/adminofferta.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneOfferte/aggiungiOfferta.jsp");
 		requestDispatcher.forward(request, response);
 	}
 

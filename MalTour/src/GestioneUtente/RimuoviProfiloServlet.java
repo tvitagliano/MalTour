@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import GestioneGenerale.BaseServlet;
 
 
-@WebServlet("/EliminaAccount")
+@WebServlet("/RimuoviProfilo")
 public class RimuoviProfiloServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private final UtenteDAO utenteDAO = new UtenteDAO();

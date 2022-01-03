@@ -42,19 +42,15 @@ public class UtenteDAO {
 	}
 	
     public int verificaGestore(String email) {
-    	Logger logger=Logger.getLogger("verificaGestore.java");
-    	logger.info("Apro una connessione in getCodiceUtente di AdminBean.java");
     	int gestore = 0;
     	try (Connection con = ConPool.getConnection()) {
-    		PreparedStatement ps = con
-					.prepareStatement("SELECT email from utente where gestore = ?");
+    		PreparedStatement ps = con.prepareStatement("SELECT email from utente where gestore = ?");
     		ps.setString(1, email);
     		ResultSet rs = ps.executeQuery();
     		rs.next();
 				rs.getInt(gestore);
 				return gestore;
     	} catch (SQLException e) {
-    		// TODO Auto-generated catch block
     		throw new RuntimeException(e);
     	}
 }

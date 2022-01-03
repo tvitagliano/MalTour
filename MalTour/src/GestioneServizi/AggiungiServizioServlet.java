@@ -22,7 +22,7 @@ import GestioneGenerale.BaseServlet;
 import GestioneOfferte.MyServletException;
 
 
-@WebServlet("/AdminServizio")
+@WebServlet("/AggiungiServizio")
 public class AggiungiServizioServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private final ServizioDAO servizioDAO = new ServizioDAO();

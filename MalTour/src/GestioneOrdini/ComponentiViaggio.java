@@ -1,6 +1,6 @@
 package GestioneOrdini;
 
-import java.util.List;
+
 
 
 public class ComponentiViaggio {

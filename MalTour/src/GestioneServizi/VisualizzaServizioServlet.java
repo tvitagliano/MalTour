@@ -23,7 +23,7 @@ import GestioneOfferte.OffertaDAO;
 
 
 
-@WebServlet("/Servizio")
+@WebServlet("/VisualizzaServizio")
 public class VisualizzaServizioServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private final OffertaDAO offertaDAO = new OffertaDAO();

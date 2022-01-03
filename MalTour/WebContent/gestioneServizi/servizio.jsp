@@ -67,7 +67,7 @@
 	</c:if>
 	
 	<c:if test="${utente.gestoreOfferte}">
-			<form action="AdminServizio" method="post">
+			<form action="RimuoviServizio" method="post">
 				<div class="row">
 		      		<div class="column">
 		        		 <h1> ${servizio.nome} </h1>
