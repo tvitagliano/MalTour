@@ -2,7 +2,7 @@
 package GestioneUtente;
 
 import java.sql.Connection;
-import java.util.logging.Logger;
+
 
 
 import java.sql.PreparedStatement;

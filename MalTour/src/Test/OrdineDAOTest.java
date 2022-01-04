@@ -4,6 +4,7 @@ package Test;
 
 import org.junit.Test;
 
+import GestioneOrdini.ComponentiViaggio;
 import GestioneOrdini.Ordine;
 import GestioneOrdini.OrdineDAO;
 
@@ -14,20 +15,19 @@ import static org.junit.Assert.*;
 
 public class OrdineDAOTest {
     OrdineDAO ordineDAO = new OrdineDAO();
+    ArrayList<ComponentiViaggio> componenti = new ArrayList<>();
+    List<Ordine> ordineList = new ArrayList<>();
+	Ordine ordineDaSalvare = new Ordine(4, 2, 4, "serena@maltour.com", false, componenti);
+    
     @Test
     public void doSave() {
-
-    	Ordine ordine = new Ordine(1, 2, 3, "", false, null);
-        int pippo = ordineDAO.doSave(ordine);
-        assertEquals(1, pippo);
-
+    	int yes = ordineDAO.doSave(ordineDaSalvare);
+        assertEquals(1, yes);
     }
 
     @Test
     public void doRetrieveByUtente() {
-
-        List<Ordine> ordineList = new ArrayList<>();
-        assertNotEquals(ordineList,ordineDAO.doRetrieveByUtente(2));
-
+    	assertNotEquals(ordineList,ordineDAO.doRetrieveByUtente(2));
     }
+    
 }

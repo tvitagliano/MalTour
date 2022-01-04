@@ -12,66 +12,46 @@ import static org.junit.Assert.*;
 
 public class ServizioDAOTest {
 
-    ServizioDAO categoriaDAO = new ServizioDAO();
-
-
+    ServizioDAO servizioDAO = new ServizioDAO();
+    List<Servizio> servizio = new ArrayList<>();
+    Servizio servizio1 = new Servizio();
+	Servizio servizioEsistente = new Servizio(1,"TOUR","tour enogastronomici e culturali, alla scoperta dell italia");
+	Servizio servizioDaSalvare = new Servizio(5,"DESTINAZIONE MONTAGNA", "Ci sono tantissimi luoghi che vi attendono, qui abbiamo realizzato una piccola guida ");
+	Servizio servizioUpdate = new Servizio(3, "FERIE ESTIVE", "solo qualche giorno libero");
+	
     @Test
     public void doRetrieveAll() {
-
-        List<Servizio> categoria = new ArrayList<>();
-        assertNotEquals(categoria, categoriaDAO.doRetrieveAll());
-
+    	assertNotEquals(servizio , servizioDAO.doRetrieveAll());
     }
 
 
     @Test
     public void doSave() {
-
-
-    	Servizio categoriaValida = new Servizio(10, "Categoria1", "Descrione1");
-    	int succ = categoriaDAO.doSave(categoriaValida);
+    	int succ = servizioDAO.doSave(servizioDaSalvare);
         assertEquals(1, succ);
-
-
     }
 
     @Test
     public void doUpdate() {
-
-    	Servizio categoriaUpdate = new Servizio(4, "CategoriaNuova", "DescrizioneNuova");
-        boolean succ = categoriaDAO.doUpdate(categoriaUpdate);
-
-        assertEquals(true, succ);
-
-
+    	boolean succ = servizioDAO.doUpdate(servizioUpdate);
+    	assertEquals(true, succ);
     }
 
     @Test
     public void doDelete() {
-
-        int succ = categoriaDAO.doDelete(1);
+    	int succ = servizioDAO.doDelete(2);
         assertEquals(1, succ);
-
     }
 
     @Test
     public void doRetrieveByNome() {
-
-    	Servizio categoria = new Servizio();
-
-        categoria = categoriaDAO.doRetrieveByNome("Minicrociere");
-        assertEquals("Minicrociere", categoria.getNome());
-
+    	servizio1 = servizioDAO.doRetrieveByNome("MINICROCIERE");
+        assertEquals("MINICROCIERE", servizio1.getNome());
     }
 
     @Test
     public void doRetrieveByDescrizione() {
-
-    	Servizio categoria = new Servizio();
-
-        categoria = categoriaDAO.doRetrieveByDescrizione("");
-        assertEquals("", categoria.getDescrizione());
-
-
+    	servizio1 = servizioDAO.doRetrieveByDescrizione("Hai solo qualche giorno libero e stai pensando ad una vacanza in alto mare? Di seguito ti proponiamo un elenco di mini crociere. Si tratta di Crociere che durano meno di 7 giorni, ma avrai la sensazione di viverne molti di più.");
+        assertEquals("Hai solo qualche giorno libero e stai pensando ad una vacanza in alto mare? Di seguito ti proponiamo un elenco di mini crociere. Si tratta di Crociere che durano meno di 7 giorni, ma avrai la sensazione di viverne molti di più.", servizio1.getDescrizione());
     }
 }
