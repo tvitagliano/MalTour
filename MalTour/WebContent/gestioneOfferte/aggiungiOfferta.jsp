@@ -92,7 +92,7 @@
 		<h5>${notifica}</h5>
 		<c:if test="${param.rimuovi == null}">
 		
-			<form action="AdminOfferta" method="post">
+			<form action="AdminOfferte" method="post">
 			
 				<input type="hidden" name="id" value="${prodotto.id}">
 				

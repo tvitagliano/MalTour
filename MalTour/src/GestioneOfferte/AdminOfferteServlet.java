@@ -17,7 +17,7 @@ import GestioneServizi.Servizio;
 import GestioneUtente.Utente;
 
 
-@WebServlet("/AdminOfferta")
+@WebServlet("/AdminOfferte")
 public class AdminOfferteServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private final OffertaDAO offertaDAO = new OffertaDAO();
@@ -50,6 +50,7 @@ public class AdminOfferteServlet extends BaseServlet {
 				String partenza_da = request.getParameter("partenza_da");
 				String arrivo_a = request.getParameter("arrivo_a");
 				String pernottamento = request.getParameter("pernottamento");
+				String posti_disponibili =request.getParameter("posti_disponibili");
 				String prezzoCent = request.getParameter("prezzoCent");
 				
 				
@@ -66,6 +67,7 @@ public class AdminOfferteServlet extends BaseServlet {
 					offerta.setPartenza_da(partenza_da);
 					offerta.setArrivo_a(arrivo_a);
 					offerta.setPernottamento(pernottamento);
+					offerta.setPosti_disponibili(Integer.parseInt(posti_disponibili));
 					offerta.setPrezzoCent(Long.parseLong(prezzoCent));
 
 					String[] servizi= request.getParameterValues("servizi");
@@ -75,14 +77,16 @@ public class AdminOfferteServlet extends BaseServlet {
 						return c;
 					}).collect(Collectors.toList()) : Collections.emptyList());
 
-					if (idstr.isEmpty()) { // aggiunta nuovo prodotto
+					 // aggiunta nuovo prodotto
 						offertaDAO.doSave(offerta);
 						request.setAttribute("notifica", "Offerta aggiunta con successo.");
-					} else { // modifica prodotto esistente
+						
+					if (!idstr.isEmpty()){ // modifica prodotto esistente
 						offerta.setId(Integer.parseInt(idstr));
 						offertaDAO.doUpdate(offerta);
 						request.setAttribute("notifica", "Offerta modificata con successo.");
 					}
+					
 				} else {
 					int id = Integer.parseInt(idstr);
 					offerta = offertaDAO.doRetrieveById(id);
@@ -91,7 +95,7 @@ public class AdminOfferteServlet extends BaseServlet {
 			}
 		}
 
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/aggiungiOfferta.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneOfferte/aggiungiOfferta.jsp");
 		requestDispatcher.forward(request, response);
 	}
 
