@@ -89,7 +89,7 @@
 		<h1>${operazione} Servizio </h1>
 		<h5>${notifica}</h5>
 		<c:if test="${param.rimuovi == null}">
-  			<form action="AdminServizio" method="post">
+  			<form action="AggiungiServizio" method="post">
     			
 				<input type="hidden" name="id" value="${servizio.id}">
 				

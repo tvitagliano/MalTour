@@ -65,21 +65,18 @@
 	<c:if test="${!(utente.cliente)}">
 		<h1>${servizio.nome}</h1>
 	</c:if>
-	
-	<c:if test="${utente.gestoreOfferte}">
-			<form action="RimuoviServizio" method="post">
-				<div class="row">
-		      		<div class="column">
-		        		 <h1> ${servizio.nome} </h1>
-		      		</div>
-		      		<div class="column">
-		        		<input type="hidden" class="btns success"name="id" value="${servizio.id}">
-						<input type="submit"class="btns success" value="Modifica">
-						<input type="submit"class="btns success" name="rimuovi" value="Rimuovi">
-		      		</div>
-	    		</div>
-    		</form>
-	</c:if>
+
+		<c:if test="${utente.gestoreOfferte}">
+				<form action="RimuoviServizio" method="post">
+					<input type="hidden" name="id" value="${offerta.id}">
+					<input type="submit" class="btnn success" name="rimuovi" value="Rimuovi">
+				</form>
+				<form action="ModificaServizio" method="post">
+					<input type="hidden" name="id" value="${offerta.id}">
+					<input type="submit" class="btnn success" value="Modifica">
+				</form>
+		</c:if>
+		
 	
 	<h3>${servizio.descrizione}</h3>
 	

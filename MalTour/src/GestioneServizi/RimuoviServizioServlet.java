@@ -102,7 +102,7 @@ public class RimuoviServizioServlet extends BaseServlet {
 			}
 		}
 		logger.info("Entarto in AdminServizioServlet.java");
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneServizi/adminservizio.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneServizi/aggiungiServizio.jsp");
 		requestDispatcher.forward(request, response);
 	}
 
