@@ -30,6 +30,7 @@ public class LoginTest {
         login1.setId(id);
         login1.setIdutente(idutente);
         login1.setToken(token);
+        
         assertEquals(id, login1.getId());
         assertEquals(idutente, login1.getIdutente());
         assertEquals(token, login1.getToken());

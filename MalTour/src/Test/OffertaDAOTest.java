@@ -13,78 +13,59 @@ import static org.junit.Assert.*;
 
 public class OffertaDAOTest {
     OffertaDAO prodottoDAO = new OffertaDAO();
+    List<Offerta> offertaList = new ArrayList<>();
+    Offerta offerta = new Offerta(10, "Mauritius","meta mare", "30/01/2022", "10:30",
+			"12/02/2022","20:15", "roma fiumicino", "Sir Seewoosagur", "hotel la maison",
+			5, 1500, null);
+    
+    Offerta offerta2 = new Offerta(10, "Mauriti","meta mare", "30/01/2022", "10:30",
+			"12/02/2022","20:15", "roma fiumicino", "Sir Seewoosagur", "hotel la maison",
+			5, 1500, null);
+    
     @Test
     public void doRetrieveAll() {
-
-        List<Offerta> prodottoList = new ArrayList<>();
-        assertNotEquals(prodottoList,prodottoDAO.doRetrieveAll(1, 10));
-
+    	assertNotEquals(offertaList,prodottoDAO.doRetrieveAll(1, 10));
     }
 
     @Test
     public void doRetrieveById() {
 
-        List<Offerta> prodottoList = new ArrayList<>();
-        assertNotEquals(prodottoList,prodottoDAO.doRetrieveById(1));
+        assertNotEquals(offertaList,prodottoDAO.doRetrieveById(1));
 
     }
 
     @Test
     public void doRetrieveByCategoria() {
-
-        List<Offerta> prodottoList = new ArrayList<>();
-        assertNotEquals(prodottoList,prodottoDAO.doRetrieveByDestinazione(null,1, 10));
-
+        assertNotEquals(offertaList,prodottoDAO.doRetrieveByDestinazione(null,1, 10));
     }
 
     @Test
     public void doSave() {
-
-
-    	Offerta prodotto= new Offerta(1, "destinazione","descrizione", "data_partenza", "ora_partenza",
-    			"data_ritorno","ora_ritorno", "partenza_da", "arrivo_a", "pernottamento",
-    			5, 150, null);
-        int pippo = prodottoDAO.doSave(prodotto);
-        assertEquals(1, pippo);
-
+    	int yes = prodottoDAO.doSave(offerta);
+        assertEquals(1, yes);
     }
 
     @Test
     public void doUpdate() {
-
-
-    	Offerta prodotto= new Offerta(1234, "destinazione","descrizione", "data_partenza", "ora_partenza",
-    			"data_ritorno","oraritorno", "partenzada", "arrivoa", "pernottamento",
-    			5, 150, null);
-        boolean succ = prodottoDAO.doUpdate(prodotto);
-
-        assertEquals(true, succ);
-
+        boolean succ = prodottoDAO.doUpdate(offerta2);
+        assertEquals(false, succ);
     }
 
     @Test
     public void doDelete() {
-
-        int pippo = prodottoDAO.doDelete(4);
-        assertEquals(1, pippo);
-
+    	int yes = prodottoDAO.doDelete(1);
+        assertEquals(1, yes);
     }
 
     @Test
     public void doRetrieveByNomeOrDescrizione() {
-
-        List<Offerta> prodottoList = new ArrayList<>();
-        assertNotEquals(prodottoList,prodottoDAO.doRetrieveByNomeOrDescrizione("nome", 0, 0));
-
+        assertNotEquals(offertaList,prodottoDAO.doRetrieveByNomeOrDescrizione("nome", 0, 0));
     }
 
  
-
     @Test
     public void doRetrieveByServizio() {
-
-        List<Offerta> prodottoList = new ArrayList<>();
-        assertNotEquals(prodottoList,prodottoDAO.doRetrieveByServizio(1, 0, 0));
+        assertNotEquals(offertaList,prodottoDAO.doRetrieveByServizio(1, 0, 0));
 
     }
    

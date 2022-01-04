@@ -18,29 +18,28 @@ public class CarrelloTest {
 
 
         int quantita = 2;
-        Offerta prodotto = new Offerta(1234, "destinazione","descrizione", "data_partenza", "ora_partenza",
-    			"data_ritorno","ora_ritorno", "partenza_da", "arrivo_a", "pernottamento",
-    			5, 150, null);
+        Offerta offerta1 = new Offerta(10, "Mauritius","meta mare", "30/01/2022", "10:30",
+    			"12/02/2022","20:15", "roma fiumicino", "Sir Seewoosagur", "hotel la maison",
+    			5, 1500, null);
 
-        Carrello.OffertaQuantita prodottoQuantita = new Carrello.OffertaQuantita(prodotto, quantita);
+        Carrello.OffertaQuantita prodottoQuantita = new Carrello.OffertaQuantita(offerta1, quantita);
         String test = prodottoQuantita.getOfferta().toString();
 
         assertEquals(10, prodottoQuantita.getOfferta().getId());
-        assertEquals("Prova", prodottoQuantita.getOfferta().getDestinazione());
-        assertEquals("Desc", prodottoQuantita.getOfferta().getDescrizione());
-        assertEquals(20, prodottoQuantita.getOfferta().getData_partenza());
-        assertEquals(20, prodottoQuantita.getOfferta().getOra_partenza());
-        assertEquals(20, prodottoQuantita.getOfferta().getData_ritorno());
-        assertEquals(20, prodottoQuantita.getOfferta().getOra_ritorno());
-        assertEquals(20, prodottoQuantita.getOfferta().getPartenza_da());
-        assertEquals(20, prodottoQuantita.getOfferta().getArrivo_a());
-        assertEquals(20, prodottoQuantita.getOfferta().getPernottamento());
-        assertEquals(22, prodottoQuantita.getOfferta().getPosti_disponibili());
-        assertEquals(20, prodottoQuantita.getOfferta().getPrezzoCent());
-        assertEquals(1, prodottoQuantita.getOfferta().getServizi());
+        assertEquals("Mauritius", prodottoQuantita.getOfferta().getDestinazione());
+        assertEquals("meta mare", prodottoQuantita.getOfferta().getDescrizione());
+        assertEquals("30/01/2022", prodottoQuantita.getOfferta().getData_partenza());
+        assertEquals("10:30", prodottoQuantita.getOfferta().getOra_partenza());
+        assertEquals("12/02/2022", prodottoQuantita.getOfferta().getData_ritorno());
+        assertEquals("20:15", prodottoQuantita.getOfferta().getOra_ritorno());
+        assertEquals("roma fiumicino", prodottoQuantita.getOfferta().getPartenza_da());
+        assertEquals("Sir Seewoosagur", prodottoQuantita.getOfferta().getArrivo_a());
+        assertEquals("hotel la maison", prodottoQuantita.getOfferta().getPernottamento());
+        assertEquals(5, prodottoQuantita.getOfferta().getPosti_disponibili());
+        assertEquals(1500, prodottoQuantita.getOfferta().getPrezzoCent());
+        assertEquals(null, prodottoQuantita.getOfferta().getServizi());
         assertEquals(test, prodottoQuantita.getOfferta().toString());
 
     }
-
 
 }

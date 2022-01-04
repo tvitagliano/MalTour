@@ -100,6 +100,7 @@ public class UtenteDAO {
         }
     }
 
+
 	public Utente doRetrieveByUsername(String username) {
 		try (Connection con = ConPool.getConnection()) {
 			PreparedStatement ps = con.prepareStatement(
@@ -133,7 +134,7 @@ public class UtenteDAO {
 			ps.setString(4, utente.getEmail());
 			ps.setInt(5, utente.gestore());
 			if (ps.executeUpdate() != 1) {
-				throw new RuntimeException("INSERT error.");
+				throw new RuntimeException("Errore nella query di inserimento");
 			}
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
@@ -144,6 +145,7 @@ public class UtenteDAO {
 			return false;
 		}
 	}
+	
 	
 	public int doUpdate(Utente utente) {
 		try (Connection con = ConPool.getConnection()) {

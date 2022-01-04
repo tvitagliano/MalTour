@@ -15,80 +15,55 @@ import static org.junit.Assert.*;
 public class UtenteDAOTest {
 
     UtenteDAO utenteDAO = new UtenteDAO();
-
+    Utente utente = new Utente(1,"Angela","titolare01","Angela","angela@maltour.com",1);
 
     @Test
     public void doRetrieveAll() {
-
-        List<Utente> utente = new ArrayList<>();
+    	List<Utente> utente = new ArrayList<>();
         assertNotEquals(utente, utenteDAO.doRetrieveAll(1, 10));
-
     }
 
     @Test
     public void doRetrieveById() {
-
-        Utente utente = new Utente();
-
-        utente = utenteDAO.doRetrieveById(1);
+    	utente = utenteDAO.doRetrieveById(1);
         assertEquals(1, utente.getId());
     }
 
     @Test
     public void doRetrieveByUsernamePassword() {
-
-        Utente utente = new Utente();
-
-        utente = utenteDAO.doRetrieveByUsernamePassword("Giovanni", "password1");
-        assertEquals("Giovanni", utente.getUsername());
-        assertEquals("password1", utente.getPasswordhash());
-
+    	utente = utenteDAO.doRetrieveByUsernamePassword("Angela", "titolare01");
+        assertEquals("Angela", utente.getUsername());
+        assertEquals("titolare01", utente.getPasswordhash());
     }
 
     @Test
     public void doRetrieveByUsername() {
-        Utente utente = new Utente();
-
-        utente = utenteDAO.doRetrieveByUsername("Giovanni");
-        assertEquals("Giovanni", utente.getUsername());
+    	utente = utenteDAO.doRetrieveByUsername("Angela");
+        assertEquals("Angela", utente.getUsername());
     }
 
     @Test
     public void doRetrieveByEmail() {
-
-        Utente utente = new Utente();
-
-        utente = utenteDAO.doRetrieveByEmail("");
-        assertEquals("utente1@libero.it", utente.getEmail());
+    	utente = utenteDAO.doRetrieveByEmail("angela@maltour.com");
+        assertEquals("angela@maltour.com", utente.getEmail());
     }
 
     @Test
     public void doSave() {
-
-        Utente utente = new Utente(5, "Prova", "Prova", "Email", "Prova", 1);
-
-        boolean succ = utenteDAO.doSave(utente);
+    	boolean succ = utenteDAO.doSave(utente);
         assertEquals(true, succ);
-
-
     }
 
     @Test
     public void doUpdate() {
-    	
-    	Utente utente1 = new Utente(5, "Prova", "Prova", "Email", "Prova", 1);
-        int succ = utenteDAO.doUpdate(utente1);
+    	int succ = utenteDAO.doUpdate(utente);
         assertEquals(1, succ);
-
-
-
     }
 
     @Test
     public void doDelete() {
-
-        int succ = utenteDAO.doDelete(1);
+    	int succ = utenteDAO.doDelete(1);
         assertEquals(1, succ);
-
     }
+    
 }
