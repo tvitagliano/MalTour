@@ -74,7 +74,7 @@ public class VisualizzaUtentiServlet extends BaseServlet {
 		}
 
 		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneUtente/adminutenti.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneUtente/visualizzaUtenti.jsp");
 		requestDispatcher.forward(request, response);
 
 	}

@@ -209,7 +209,7 @@
 		
 		<p>Servizi:
 			<c:forEach items="${offerta.servizi}" var="servizio" varStatus="status">
-				<a href="Servizio?id=<c:out value="${servizio.id}"/>"><c:out value="${servizio.nome}" /></a><c:if test="${not status.last}">, </c:if>
+				<a href="VisualizzaServizio?id=<c:out value="${servizio.id}"/>"><c:out value="${servizio.nome}" /></a><c:if test="${not status.last}">, </c:if>
 			</c:forEach>
 		</p>
 		

@@ -83,7 +83,7 @@
 					<td>${utente.gestoreOrdini}</td>
 					<td><a href="Carrello" btn primary>...</a></td>
 					<td>
-						<form action="AdminUtenti" method="post">
+						<form action="" method="post">
 							<input type="hidden" name="id" value="${utente.id}">
 							<c:if test="${utente != null}">
 								<input type="submit" class="btn success" name="rimuovi" value="Rimuovi">

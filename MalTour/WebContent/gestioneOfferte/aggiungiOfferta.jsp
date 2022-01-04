@@ -92,7 +92,7 @@
 		<h5>${notifica}</h5>
 		<c:if test="${param.rimuovi == null}">
 		
-			<form action="AggiungiOfferta" method="post">
+			<form action="AdminOfferta" method="post">
 			
 				<input type="hidden" name="id" value="${prodotto.id}">
 				
@@ -191,24 +191,14 @@
 				
 				<div class="rows">
       				<div class="col-25">
-        				<label>PREZZO (cent):</label>
+        				<label>PREZZO:</label>
       				</div>
       				<div class="col-75">
         				<input type="number" name="prezzoCent" value="${offerta.prezzoCent}">
       				</div>
     			</div>
 				
-				<div class="rows">
-      				<div class="col-25">
-        				<label>Immagine</label>
-      				</div>
-      				<div class="col-75">
-        				
-							<input type="file" class="btn success"  id="myFile" name="filename">
-	  						<input class="btn success"  type="submit">
-						
-      				</div>
-    			</div>
+				
 				
 				
 				

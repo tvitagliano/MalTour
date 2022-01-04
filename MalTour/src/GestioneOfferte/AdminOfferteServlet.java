@@ -1,14 +1,8 @@
-
 package GestioneOfferte;
 
 import java.io.IOException;
-
-
-
-
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javax.servlet.RequestDispatcher;
@@ -23,28 +17,30 @@ import GestioneServizi.Servizio;
 import GestioneUtente.Utente;
 
 
-@WebServlet("/AggiungiOfferta")
-public class AggiungiOffertaServlet extends BaseServlet {
+@WebServlet("/AdminOfferta")
+public class AdminOfferteServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 	private final OffertaDAO offertaDAO = new OffertaDAO();
-	private String idstr;
-	private static Logger logger=Logger.getLogger("AggiungiOffertaServlet.java");
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		logger.info("Entarto in AggiungiOffertaServlet.java");
 		Utente utente = (Utente) request.getSession().getAttribute("utente");
-		if (utente == null || (utente.gestore())==1) {
+		if (utente == null || !utente.isGestoreOfferte()) {
 			throw new MyServletException("Utente non autorizzato");
 		}
 
-		idstr = request.getParameter("id");
-		if (idstr == null) {
-				Offerta offerta;
+		String idstr = request.getParameter("id");
+		if (idstr != null) {
+			if (request.getParameter("rimuovi") != null) {
+				offertaDAO.doDelete(Integer.parseInt(idstr));
+				request.setAttribute("notifica", "Offerta rimossa con successo.");
+			} else {
 				
+				Offerta offerta;
 				String destinazione = request.getParameter("destinazione");
 				String descrizione = request.getParameter("descrizione");
 				String data_partenza = request.getParameter("data_partenza");
@@ -54,10 +50,13 @@ public class AggiungiOffertaServlet extends BaseServlet {
 				String partenza_da = request.getParameter("partenza_da");
 				String arrivo_a = request.getParameter("arrivo_a");
 				String pernottamento = request.getParameter("pernottamento");
-
-
-				//aggiunta Offerta
+				String prezzoCent = request.getParameter("prezzoCent");
+				
+				
+				if (destinazione != null && descrizione != null && prezzoCent != null) {
+					// modifica/aggiunta prodotto
 					offerta = new Offerta();
+					
 					offerta.setDestinazione(destinazione);
 					offerta.setDescrizione(descrizione);
 					offerta.setData_partenza(data_partenza);
@@ -67,9 +66,8 @@ public class AggiungiOffertaServlet extends BaseServlet {
 					offerta.setPartenza_da(partenza_da);
 					offerta.setArrivo_a(arrivo_a);
 					offerta.setPernottamento(pernottamento);
+					offerta.setPrezzoCent(Long.parseLong(prezzoCent));
 
-
-					
 					String[] servizi= request.getParameterValues("servizi");
 					offerta.setServizi(servizi != null ? Arrays.stream(servizi).map(id -> {
 						Servizio c = new Servizio();
@@ -80,16 +78,27 @@ public class AggiungiOffertaServlet extends BaseServlet {
 					if (idstr.isEmpty()) { // aggiunta nuovo prodotto
 						offertaDAO.doSave(offerta);
 						request.setAttribute("notifica", "Offerta aggiunta con successo.");
-					} 
-				
+					} else { // modifica prodotto esistente
+						offerta.setId(Integer.parseInt(idstr));
+						offertaDAO.doUpdate(offerta);
+						request.setAttribute("notifica", "Offerta modificata con successo.");
+					}
+				} else {
+					int id = Integer.parseInt(idstr);
+					offerta = offertaDAO.doRetrieveById(id);
+				}
 				request.setAttribute("offerta", offerta);
 			}
-		
+		}
 
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("gestioneOfferte/aggiungiOfferta.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/aggiungiOfferta.jsp");
 		requestDispatcher.forward(request, response);
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);

@@ -38,7 +38,7 @@ public class ModificaServizioServlet extends BaseServlet {
 
 		String idstr = request.getParameter("id");
 		if (idstr != null) {
-			request.setAttribute("notifica", "aa");
+			request.setAttribute("notifica", "");
 			
 			@SuppressWarnings("unchecked")
 			List<Servizio> servizi = ((List<Servizio>) request.getAttribute("servizi"));
@@ -70,23 +70,7 @@ public class ModificaServizioServlet extends BaseServlet {
                         throw new MyServletException("Non hai inserito alcuna descrizione! Riprova.");
                     }
 					
-					if (servizio == null) { // aggiunta nuovo servizio
-						servizio = new Servizio();
-						servizio.setNome(nome);
-						servizio.setDescrizione(descrizione);
-						
-						if ((servizioDAO.doRetrieveByNome(nome) != null)) {
-                            throw new MyServletException("Il servizio che vuoi inserire è gia presente! Riprova");
-                        }
-						
-						
-						servizioDAO.doSave(servizio);
-						servizi.add(servizio);
-						request.setAttribute("notifica", "Servizio aggiunto con successo.");
-						
-						
-						
-					} else { // modifica servizio esistente
+					 if(servizio!= null) { // modifica servizio esistente
 						
 						if ((servizioDAO.doRetrieveByNome(nome) != null) && (servizioDAO.doRetrieveByDescrizione(descrizione) != null)) {
 													throw new MyServletException("Non hai modificato alcun parametro! Riprova");

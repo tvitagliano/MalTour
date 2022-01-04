@@ -83,10 +83,10 @@
 	<c:forEach items="${offerte}" var="offerta">
 		<div class="row">
 		  	<div class="column">
-		    	<a href="Offerta?id=${offerta.id}"><img src="img/offerte/${offerta.id}.jpg" width="500" height="200"></a>
+		    	<a href="ViusalizzaOfferta?id=${offerta.id}"><img src="img/offerte/${offerta.id}.jpg" width="500" height="200"></a>
 		  	</div>
 		  	<div class="column">
-			    <h3><a href="Offerta?id=${offerta.id}">${offerta.destinazione}</a></h3>
+			    <h3><a href="VisualizzaOfferta?id=${offerta.id}">${offerta.destinazione}</a></h3>
 				<p>
 					<h3>DESCRIZIONE: ${offerta.descrizione}</h3>
 					
